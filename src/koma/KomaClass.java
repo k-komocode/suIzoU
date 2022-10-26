@@ -13,9 +13,18 @@ public abstract class KomaClass {
 	int gyou ;
 	int retsu ;
 	
+	String komaName;
+	//以上の四つはいずれも１～９の数字しか入らない。
+	
+	//どっちの手番の物かを示すフィールド
 	//falseなら後手
 	boolean teban ; 
+	
+	//成りか不成か示すフィールド
+	//trueだと成っている。
 	boolean nari = false;
+	
+	//
 	
 	List<int[]> kiki = new ArrayList<int[]>();
 	
@@ -51,12 +60,12 @@ public abstract class KomaClass {
 			System.out.println("error");
 		}
 		
-		kikiAcu();
+		
 	};
 	
 	
 	//駒の利きを計算する。
-	abstract void kikiAcu() ;
+	//abstract void kikiAcu() ;
 	
 	void tenchi(ArrayList<int[]>imaKikiList){
 		int i = 0;
@@ -72,5 +81,44 @@ public abstract class KomaClass {
 	int tenchi(int zahyo) {
 		return 10-zahyo;
 	}
+
+	
+	
+	
+	//ここからゲッター
+	public int getImaGyou() {
+		return imaGyou;
+	}
+
+	public int getImaRetsu() {
+		return imaRetsu;
+	}
+
+	public int getGyou() {
+		return gyou;
+	}
+
+	public int getRetsu() {
+		return retsu;
+	}
+
+	public String getKomaName() {
+		return komaName;
+	}
+
+	public boolean isTeban() {
+		return teban;
+	}
+
+	public boolean isNari() {
+		return nari;
+	}
+
+	public List<int[]> getKiki() {
+		return kiki;
+	}
+	
+	
+	
 
 }

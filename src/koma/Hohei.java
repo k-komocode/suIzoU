@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Hohei extends KomaClass {
 
-	
-	public void move() {
-		this.retsu++; 
+	public Hohei(int imaGyou, int imaRetsu, boolean teban) {
+		super(imaGyou, imaRetsu, teban);
+		// TODO 自動生成されたコンストラクター・スタブ
+		
+		komaName = "歩";
 	}
-	
+
 	public void kikiAcu(){
 		kiki.clear();
 		ArrayList<int[]> retList = new ArrayList<int[]>();
