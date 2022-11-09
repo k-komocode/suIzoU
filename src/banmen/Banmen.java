@@ -18,6 +18,15 @@ public class Banmen {
 	
 	public List<KomaClass> komaList = new ArrayList<KomaClass>();
 	
+	//駒の利きリストから自駒の位置を除くためにある。
+	public static List<int[]> senteKomaSonzaiList =new ArrayList<int[]>() ;
+	public static  List<int[]> goteKomaSonzaiList =new ArrayList<int[]>() ;
+	
+	
+	
+	//伸びるタイプの利き(香車、角、飛)を止める思考に使う。
+	public static List<int[]> komaSonzaiList =new ArrayList<int[]>() ;
+	
 	
 	public Banmen() {
 		super();
@@ -45,11 +54,20 @@ public class Banmen {
 		komaList.add(new OuShou(9, 5, true));
 		komaList.add(new OuShou(9, 5, false));
 		
-		komaList.add(new Kakugyou(8, 8, true));
-		komaList.add(new Kakugyou(8, 8, false));
+		komaList.add(new Kakugyou(8, 2, true));
+		komaList.add(new Kakugyou(8, 2, false));
 		
-		komaList.add(new Hisya(8, 2, true));
-		komaList.add(new Hisya(8, 2, false));
+		komaList.add(new Hisya(8, 8, true));
+		komaList.add(new Hisya(8, 8, false));
+		
+		for(KomaClass koma:komaList) {
+			if(koma.isTeban()) {
+				senteKomaSonzaiList.add(new int []{koma.getGyou(),koma.getRetsu()});
+			}else {
+				goteKomaSonzaiList.add(new int []{koma.getGyou(),koma.getRetsu()});
+			}
+			komaSonzaiList.add(new int []{koma.getGyou(),koma.getRetsu()});
+		}
 		
 	}
 

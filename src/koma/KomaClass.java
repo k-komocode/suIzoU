@@ -3,6 +3,8 @@ package koma;
 import java.util.ArrayList;
 import java.util.List;
 
+import banmen.Banmen;
+
 public abstract class KomaClass {
 	// imaフィールドは仮想の座標
 	// 先手の駒はこれをそのまま使い、後手番はこれを点対象にひっくり返したものを座標とする
@@ -14,7 +16,7 @@ public abstract class KomaClass {
 	int retsu ;
 	
 	String komaName;
-	//以上の四つはいずれも１～９の数字しか入らない。
+	//以上の四つはいずれも1～9の数字しか入らない。
 	
 	//どっちの手番の物かを示すフィールド
 	//falseなら後手
@@ -65,23 +67,49 @@ public abstract class KomaClass {
 	
 	
 	//駒の利きを計算する。
-	//abstract void kikiAcu() ;
+	abstract void kikiAcu() ;
 	
-	void tenchi(ArrayList<int[]>imaKikiList){
+	
+	//後手の場合、これで座標をひっくり返す。
+	ArrayList<int[]> tenchi(ArrayList<int[]>imaKikiList){
 		int i = 0;
+		ArrayList<int[]> retList = new ArrayList<int[]>();
 		while(true) {
 			int [] tuple = imaKikiList.get(i); 
-			kiki.add(new int[] {10-tuple[0],10-tuple[1]});
+			retList.add(new int[] {10-tuple[0],10-tuple[1]});
 			i++;
 			if(i == imaKikiList.size()) {
 				break;
 			}
 		}
+		return retList;
+		
 	}
 	int tenchi(int zahyo) {
 		return 10-zahyo;
 	}
 
+	int[] banmenHantei(int[] tuple,boolean teban) {
+		
+		if(!(tuple[0]<10 && tuple[0]>0)&&(tuple[1]<10 && tuple[1]>0)) {
+			return new int[] {};
+	
+		}
+		if(teban) {
+			if(Banmen.senteKomaSonzaiList.contains(tuple)) {
+				return new int[] {};
+			}
+		}else {
+			if(Banmen.goteKomaSonzaiList.contains(tuple)) {
+				return new int[] {};
+			}
+			
+		}
+		return tuple;
+		
+			
+		
+	}
 	
 	
 	

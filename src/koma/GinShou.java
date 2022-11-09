@@ -12,19 +12,32 @@ public class GinShou extends KomaClass {
 		komaName="銀";
 	}
 
-	public void kikiAcu(int gyou,int retsu){
+	public void kikiAcu(){
+		ArrayList<int[]> imaRetList = new ArrayList<int[]>();
 		ArrayList<int[]> retList = new ArrayList<int[]>();
-		retList.add(new int[]{gyou++,retsu});
-		retList.add(new int[]{gyou++,retsu++});
-		retList.add(new int[]{gyou++,retsu--});
-		retList.add(new int[]{gyou--,retsu--});
-		retList.add(new int[]{gyou--,retsu++});
 		
+		//先に利く全てのマスを指定。
+		//仮に盤外になっても指定
+		imaRetList.add(new int[]{imaGyou++,imaRetsu});
+		imaRetList.add(new int[]{imaGyou++,imaRetsu++});
+		imaRetList.add(new int[]{imaGyou++,imaRetsu--});
+		imaRetList.add(new int[]{imaGyou--,imaRetsu--});
+		imaRetList.add(new int[]{imaGyou--,imaRetsu++});
+		
+		
+		//ここで余計なものを削る。
+		//例えば盤外に利いてる分とか
+		
+		for(int [] masu :imaRetList) {
+			if(banmenHantei(masu, teban).length == 2) {
+				retList.add(masu);
+			}
+		}
 		
 		if(teban) {
 			kiki=retList;
 		}else {
-			tenchi(retList);
+			kiki = tenchi(retList);
 		}
 	} ;
 }

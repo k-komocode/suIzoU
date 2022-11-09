@@ -27,7 +27,7 @@ public class Main {
 		Banmen banmen = new Banmen();
 		for (int i = 1; i<10;i++) {
 			ban[i][0] = " "+String.valueOf(i);
-			ban[0][i] = " "+String.valueOf(i);
+			ban[0][i] = " "+String.valueOf(10-i);
 			
 		}
 		
